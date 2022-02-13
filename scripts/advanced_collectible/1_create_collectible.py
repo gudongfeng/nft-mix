@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-from brownie import AdvancedCollectible, accounts, config
-from scripts.helpful_scripts import get_breed, fund_with_link
+from brownie import AdvancedCollectible, config
+from scripts.helpful_scripts import get_breed, fund_with_link, get_account
 import time
 
 
 def main():
-    dev = accounts.add(config["wallets"]["from_key"])
+    dev = get_account()
     advanced_collectible = AdvancedCollectible[len(AdvancedCollectible) - 1]
     fund_with_link(advanced_collectible.address)
     transaction = advanced_collectible.createCollectible("None", {"from": dev})

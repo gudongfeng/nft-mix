@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-from brownie import AdvancedCollectible, accounts, network, config
-from scripts.helpful_scripts import fund_with_link, get_publish_source
+from brownie import AdvancedCollectible, network, config
+from scripts.helpful_scripts import fund_with_link, get_publish_source, get_account
+
 
 def main():
-    dev = accounts.add(config["wallets"]["from_key"])
+    dev = get_account()
     print(network.show_active())
     advanced_collectible = AdvancedCollectible.deploy(
         config["networks"][network.show_active()]["vrf_coordinator"],
